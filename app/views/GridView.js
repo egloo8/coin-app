@@ -13,7 +13,7 @@ class GridView extends Component {
     render() {
         return (
             <ScrollView style={styles.homeContainer}>
-                <Grid coins={coins50p} onCoinPress={this.onCoinPress} />
+                <Grid coins={this.props.navigation.state.params.coins} onCoinPress={this.onCoinPress} />
             </ScrollView>
         )
     }
