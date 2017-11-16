@@ -10,7 +10,7 @@ import List from '../components/List'
 class HomeView extends Component {
 
     onMenuItemClick = (item) => {
-        this.props.navigation.navigate('Grid', { coins: coins50p })
+        this.props.navigation.navigate('Grid', { title: item.title, coins: coins50p })
     }
 
     render() {

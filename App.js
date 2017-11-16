@@ -3,6 +3,9 @@ import { StyleSheet, Text, View } from 'react-native'
 import Router from './app/config/Router'
 
 export default class App extends React.Component {
+  state = {
+    fontLoaded: false
+  }
   render() {
     return (
       <Router />
