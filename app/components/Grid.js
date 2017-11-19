@@ -12,7 +12,7 @@ class Grid extends Component {
                                 style={styles.box}
                                 key={item.id}
                             >
-                                <TouchableHighlight onPress={() => this.props.onCoinPress(item)}>
+                                <TouchableHighlight onPress={() => this.props.onCoinPress(item)} disabled={this.props.disabled}>
                                     <Image source={item.src} style={{ width: '100%', height: '100%' }} />
                                 </TouchableHighlight>
                             </View>
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
-        padding: 2
     },
     text: {
         color: '#4f603c',
@@ -39,9 +38,9 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     box: {
-        margin: 2,
-        width: Dimensions.get('window').width / 3 - 6,
-        height: 120,
+        margin: 4,
+        width: Dimensions.get('window').width / 3 - 12,
+        height: Dimensions.get('window').width / 3 - 12,
         justifyContent: 'center'
     }
 })

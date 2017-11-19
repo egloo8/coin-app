@@ -4,7 +4,7 @@ import HomeView from '../views/HomeView'
 import CoinView from '../views/CoinView'
 import GridView from '../views/GridView'
 import CollectionView from '../views/CollectionView'
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons'
 
 
 export const Coins = StackNavigator({
@@ -31,7 +31,10 @@ export const Coins = StackNavigator({
         navigationOptions: {
             headerTitle: 'Coin App',
             headerTintColor: '#ff9500',
-            headerTitleStyle: { color: 'black' }
+            headerTitleStyle: { color: 'black' },
+            // headerStyle: {
+            //     backgroundColor: '#007aff',
+            // },
         },
     }
 )
