@@ -23,7 +23,7 @@ export const Coins = StackNavigator({
     Coin: {
         screen: CoinView,
         navigationOptions: ({ navigation }) => ({
-            headerTitle: `${navigation.state.params.title}`,
+            headerTitle: `${navigation.state.params.item.title}`,
         }),
     },
 },

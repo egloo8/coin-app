@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, Image, ScrollView } from 'react-native'
-import Grid from '../components/Grid'
 import { coins50p } from '../lib/Coins'
 import { coins1 } from '../lib/Coins'
 import { menu } from '../lib/Menu'

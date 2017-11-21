@@ -11,26 +11,11 @@ class CoinView extends Component {
     }
 
     componentDidMount() {
-        AsyncStorage.getItem(this.props.navigation.state.params.id + '/amount').then(value => {
+        AsyncStorage.getItem(this.props.navigation.state.params.item.id + '/amount').then(value => {
             if (value) {
                 this.setState({ amount: JSON.parse(value) })
             }
         })
-    }
-
-    onHaveSwitch = (value) => {
-        this.setState({ have: value }, () => {
-            AsyncStorage.setItem('have/' + this.props.navigation.state.params.id, value.toString())
-        })
-        if (value) {
-            this.setState({ amount: '1' }, () => {
-                AsyncStorage.setItem('have/' + this.props.navigation.state.params.id + '/amount', '1')
-            })
-        } else {
-            this.setState({ amount: '0' }, () => {
-                AsyncStorage.setItem('have/' + this.props.navigation.state.params.id + '/amount', '0')
-            })
-        }
     }
 
     onMinusPress = () => {
@@ -38,11 +23,11 @@ class CoinView extends Component {
             disabled: true
         })
         this.setState({ amount: this.state.amount - 1 }, () => {
-            AsyncStorage.setItem(this.props.navigation.state.params.id + '/amount', (this.state.amount).toString())
+            AsyncStorage.setItem(this.props.navigation.state.params.item.id + '/amount', (this.state.amount).toString())
         })
         setTimeout(() => this.setState({
             disabled: false
-        }), 200)
+        }), 100)
     }
 
     onPlusPress = () => {
@@ -50,18 +35,18 @@ class CoinView extends Component {
             disabled: true
         })
         this.setState({ amount: this.state.amount + 1 }, () => {
-            AsyncStorage.setItem(this.props.navigation.state.params.id + '/amount', (this.state.amount).toString())
+            AsyncStorage.setItem(this.props.navigation.state.params.item.id + '/amount', (this.state.amount).toString())
         })
         setTimeout(() => this.setState({
             disabled: false
-        }), 200)
+        }), 100)
     }
 
     render() {
         return (
             <ScrollView style={styles.homeContainer}>
                 <CoinDetails
-                    item={this.props.navigation.state.params}
+                    item={this.props.navigation.state.params.item}
                     onHaveSwitch={this.onHaveSwitch}
                     amount={this.state.amount}
                     onMinusPress={this.onMinusPress}

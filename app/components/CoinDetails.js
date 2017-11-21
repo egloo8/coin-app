@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, Image, ScrollView, Dimensions, Switch, TextInput, TouchableHighlight } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import Divider from './Divider'
+import CoinDetailsTable from './CoinDetailsTable'
 
 class CoinDetails extends Component {
     state = {
@@ -20,7 +21,6 @@ class CoinDetails extends Component {
                     />
                 </View>
                 <Text style={styles.title}>{coin.title}</Text>
-                <Divider />
                 <View style={styles.operations} >
                     <TouchableHighlight onPress={this.props.onMinusPress} disabled={this.props.amount < 1 || this.props.disabled}>
                         <MaterialCommunityIcons name="minus-circle-outline" size={20} color={"#ff9500"} style={{ marginRight: 5 }} />
@@ -35,8 +35,21 @@ class CoinDetails extends Component {
                         <MaterialCommunityIcons name="plus-circle-outline" size={20} color={"#ff9500"} style={{ marginLeft: 5 }} />
                     </TouchableHighlight>
                 </View>
+                <Divider />
+                <CoinDetailsTable item={coin} />
             </View >
         )
+
+        // const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
+        // let dataSource = ds.cloneWithRows(this.props.menu)
+        // return (
+        //     <ListView
+        //         dataSource={dataSource}
+        //         renderRow={this.renderListItem}
+        //         style={styles.listView}
+        //         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+        //     />
+        // )
     }
 }
 export default CoinDetails
