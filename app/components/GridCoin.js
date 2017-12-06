@@ -9,54 +9,51 @@ class GridCoin extends Component {
 
     state = {
         opacity: 0,
-        value: ''
+        value: '',
+        loading: false
     }
 
     componentDidMount() {
         this.getOpacity()
     }
 
-    getOpacity = () => {
-        AsyncStorage.getItem(this.props.coin.id + '/amount').then(value => {
-            if (this.state.value !== value) {
-                this.setState({
-                    value: value
-                })
-                if (value && value !== '0') {
-                    this.setState({
-                        opacity: 1
-                    })
-                } else {
-                    this.setState({
-                        opacity: 0.5
-                    })
-                }
-            }
-        })
-    }
-
-    // async getOpacity() {
-    //     var opacity
-    //     const value = await AsyncStorage.getItem(this.props.coin.id + '/amount')
-    //     if (value && value !== '0') {
-    //         opacity = 1
-    //     } else {
-    //         opacity = 0.5
-    //     }
-    //     return opacity
+    // getOpacity = () => {
+    //     AsyncStorage.getItem(this.props.coin.id + '/amount').then(value => {
+    //         if (this.state.value !== value) {
+    //             this.setState({
+    //                 value: value
+    //             })
+    //             if (value && value !== '0') {
+    //                 this.setState({
+    //                     opacity: 1
+    //                 })
+    //             } else {
+    //                 this.setState({
+    //                     opacity: 0.5
+    //                 })
+    //             }
+    //         }
+    //     })
     // }
+
+    async getOpacity() {
+        var opacity
+        const value = await AsyncStorage.getItem(this.props.coin.id + '/amount')
+        if (value && value !== '0') {
+            opacity = 1
+        } else {
+            opacity = 0.5
+        }
+        return opacity
+    }
 
     render() {
         const coin = this.props.coin
-        // var opacity
-        // this.getOpacity().then((opacity) => {
-        //     if (value && value !== '0') {
-        //         opacity = 1
-        //     } else {
-        //         opacity = 0
-        //     }
-        //     console.log(opacity)
-        // })
+        var opacity
+        var loading = true
+        this.getOpacity().then((opacity) => {
+            opacity = opacity
+        })
 
         return (
             <View
@@ -64,7 +61,7 @@ class GridCoin extends Component {
                 key={coin.id}
             >
                 <TouchableWithoutFeedback onPress={() => this.props.onCoinPress(coin)} disabled={this.props.disabled}>
-                    <Image source={coin.src} style={{ width: '100%', height: '100%', opacity: this.state.opacity }} />
+                    <Image source={coin.src} style={{ width: '100%', height: '100%', opacity: opacity }} />
                 </TouchableWithoutFeedback>
             </View>
         )
