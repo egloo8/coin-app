@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Text, View, StyleSheet, Image, ScrollView } from 'react-native'
-import { coins } from '../lib/Coins'
+import { coinsDatabase } from '../lib/Coins'
 import GridCoin from '../components/GridCoin'
 
 class GridContainer extends Component {
@@ -17,7 +17,7 @@ class GridContainer extends Component {
         return (
             <ScrollView style={styles.scrollContainer}>
                 <View style={styles.container}>
-                    {coins.map((coin, index) => (
+                    {coinsDatabase.map((coin, index) => (
                         <GridCoin
                             key={index}
                             coin={coin}

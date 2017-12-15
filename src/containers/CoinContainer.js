@@ -36,7 +36,6 @@ const mapDispatchToProps = dispatch => {
         },
         onPlusPress: id => {
             dispatch(incrementAmount(id))
-            console.log(id)
         }
     }
 }

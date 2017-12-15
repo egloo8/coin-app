@@ -1,4 +1,4 @@
-export const coins = [
+export const coinsDatabase = [
     {
         id: 0,
         title: 'Britannia',

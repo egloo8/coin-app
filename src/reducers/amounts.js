@@ -1,27 +1,4 @@
-const initialState = [
-    {
-        id: 0,
-        amount: 0
-    },
-    {
-        id: 1,
-        amount: 0
-    },
-    {
-        id: 2,
-        amount: 0
-    },
-    {
-        id: 3,
-        amount: 0
-    },
-    {
-        id: 4,
-        amount: 0
-    },
-]
-
-export default function (state = initialState, action) {
+export default function (state = [], action) {
     switch (action.type) {
         case 'INCREMENT_AMOUNT':
             return state.map(coin =>
