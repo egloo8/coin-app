@@ -13,7 +13,6 @@ class GridCoin extends Component {
 
     render() {
         const coinDatabase = this.props.coinDatabase
-        const coin = this.props.coin
 
         return (
             <View
