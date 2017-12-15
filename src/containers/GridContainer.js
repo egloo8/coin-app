@@ -5,9 +5,7 @@ import { coinsDatabase } from '../lib/Coins'
 import GridCoin from '../components/GridCoin'
 
 class GridContainer extends Component {
-    state = {
-        disabled: false
-    }
+
 
     onPress = (item) => {
         this.props.navigation.navigate('Coin', { coin: item })
@@ -17,10 +15,11 @@ class GridContainer extends Component {
         return (
             <ScrollView style={styles.scrollContainer}>
                 <View style={styles.container}>
-                    {coinsDatabase.map((coin, index) => (
+                    {coinsDatabase.map((coinDatabase, index) => (
                         <GridCoin
                             key={index}
-                            coin={coin}
+                            coinDatabase={coinDatabase}
+                            coin={this.props.coins[index]}
                             onPress={this.onPress}
                         />
                     ))}
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
     return {
-        amounts: state.amounts
+        coins: state.coins
     }
 }
 

@@ -3,16 +3,25 @@ import { View, StyleSheet, Image, Dimensions, TouchableHighlight, AsyncStorage, 
 
 class GridCoin extends Component {
 
+    calculateOpacity() {
+        if (this.props.coin.amount > 0) {
+            return 1
+        } else {
+            return 0.5
+        }
+    }
+
     render() {
+        const coinDatabase = this.props.coinDatabase
         const coin = this.props.coin
 
         return (
             <View
                 style={styles.box}
-                key={coin.id}
+                key={coinDatabase.id}
             >
-                <TouchableWithoutFeedback onPress={() => this.props.onPress(coin)}>
-                    <Image source={coin.src} style={{ width: '100%', height: '100%' }} />
+                <TouchableWithoutFeedback onPress={() => this.props.onPress(coinDatabase)}>
+                    <Image source={coinDatabase.src} style={{ width: '100%', height: '100%', opacity: this.calculateOpacity() }} />
                 </TouchableWithoutFeedback>
             </View>
         )
