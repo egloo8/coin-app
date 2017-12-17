@@ -23,7 +23,7 @@ export default Coins = StackNavigator({
     Coin: {
         screen: CoinContainer,
         navigationOptions: ({ navigation }) => ({
-            headerTitle: 'labas',
+            headerTitle: `${navigation.state.params.coin.title}`,
         })
     }
 },

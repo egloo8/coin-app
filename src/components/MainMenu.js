@@ -7,7 +7,7 @@ import List from './List'
 class MainMenu extends Component {
 
     onMenuItemClick = (item) => {
-        this.props.navigation.navigate('Grid', { title: item.title, coinType: item.type})
+        this.props.navigation.navigate('Grid', { title: item.title, type: item.type})
         console.log(item)
     }
 

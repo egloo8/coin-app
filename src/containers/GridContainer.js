@@ -16,7 +16,7 @@ class GridContainer extends Component {
             <ScrollView style={styles.scrollContainer}>
                 <View style={styles.container}>
                     {coinsDatabase.map((coinDatabase, index) => (
-                        this.props.navigation.state.params.coinType === coinDatabase.type
+                        this.props.navigation.state.params.type === coinDatabase.type
                             ?
                             <GridCoin
                                 key={index}
@@ -25,7 +25,6 @@ class GridContainer extends Component {
                                 onPress={this.onPress}
                             />
                             : null
-                        // console.log(this.props.navigation.state.params.coinType)
                     ))}
                 </View>
             </ScrollView>
