@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Image, Dimensions, TouchableHighlight, AsyncStorage, TouchableWithoutFeedback } from 'react-native'
 
+import { apiBaseURL } from '../config/Constants'
+
 class GridCoin extends Component {
 
     calculateOpacity() {
@@ -17,10 +19,10 @@ class GridCoin extends Component {
         return (
             <View
                 style={styles.box}
-                key={coinDatabase.id}
+                key={coinDatabase._id}
             >
-                <TouchableWithoutFeedback onPress={() => this.props.onPress(coinDatabase)}>
-                    <Image source={coinDatabase.src} style={{ width: '100%', height: '100%', opacity: this.calculateOpacity() }} />
+                <TouchableWithoutFeedback onPress={() => this.props.onPress(coinDatabase, this.props.id)}>
+                    <Image source={{ uri: apiBaseURL + coinDatabase.imagePath }} style={{ width: '100%', height: '100%', opacity: this.calculateOpacity() }} />
                 </TouchableWithoutFeedback>
             </View>
         )

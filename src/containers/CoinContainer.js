@@ -25,7 +25,7 @@ const CoinContainer = ({ coins, id, onMinusPress, onPlusPress }) => (
 const mapStateToProps = (state, props) => {
     return {
         coins: state.coins,
-        id: props.navigation.state.params.coin.id
+        id: props.navigation.state.params.id
     }
 }
 

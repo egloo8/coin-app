@@ -1,3 +1,5 @@
+import { apiBaseURL } from '../config/Constants'
+
 export const incrementAmount = id => {
     return {
         type: 'INCREMENT_AMOUNT',
@@ -15,5 +17,18 @@ export const decrementAmount = id => {
 export const incr = () => {
     return {
         type: 'LABAS'
+    }
+}
+
+export default function fetchCoinData() {
+    return dispatch => {
+        dispatch({ type: 'FETCHING_COIN_DATA' })
+
+        return fetch(`${apiBaseURL}/coins`)
+            .then(res => res.json())
+            .then(res => dispatch({ type: 'FETCHING_COIN_DATA_SUCCESS', payload: res }))
+            .catch((error) => {
+                dispatch({ type: 'FETCHING_COIN_DATA_FAIL', payload: err.data })
+            })
     }
 }

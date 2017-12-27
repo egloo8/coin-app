@@ -8,7 +8,6 @@ class MainMenu extends Component {
 
     onMenuItemClick = (item) => {
         this.props.navigation.navigate('Grid', { title: item.title, type: item.type})
-        console.log(item)
     }
 
     render() {

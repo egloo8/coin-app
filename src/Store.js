@@ -1,5 +1,6 @@
 import React from 'react'
 import { AsyncStorage } from 'react-native'
+import thunk from 'redux-thunk'
 import { createStore, applyMiddleware, compose } from 'redux'
 import logger from 'redux-logger'
 import { autoRehydrate, persistStore } from 'redux-persist'
@@ -20,7 +21,7 @@ const initialState = { coins }
 
 let store = compose(
     autoRehydrate(),
-    applyMiddleware(logger)
+    applyMiddleware(logger, thunk)
 )(createStore)(RootReducer, initialState)
 
 persistStore(store, { storage: AsyncStorage })
