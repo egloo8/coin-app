@@ -4,8 +4,15 @@ import { StackNavigator, TabNavigator } from 'react-navigation'
 import GridContainer from '../containers/GridContainer'
 import CoinContainer from '../containers/CoinContainer'
 import MainMenu from '../components/MainMenu'
+import Login from '../components/Login'
 
 export default Coins = StackNavigator({
+    Login: {
+        screen: Login,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: 'Coin App',
+        })
+    },
     Menu: {
         screen: MainMenu,
         navigationOptions: ({ navigation }) => ({
