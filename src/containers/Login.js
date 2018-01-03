@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import { Image, Linking, StyleSheet, Platform, Text, View, Button } from 'react-native'
+import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import SafariView from 'react-native-safari-view'
 
+import { login } from '../actions/index'
+
 class Login extends Component {
 
-    state = {
-        user: undefined
-    }
-
     componentDidMount() {
+        if (this.props.user) {
+            // do something so it doesn't ask you to log in
+        }
         // Add event listener to handle OAuthLogin:// URLs
         Linking.addEventListener('url', this.handleOpenURL)
         // Launched from an external URL
@@ -22,16 +24,17 @@ class Login extends Component {
 
     componentWillUnmount() {
         // Remove event listener
-        Linking.removeEventListener('url', this.handleOpenURL);
-    };
+        Linking.removeEventListener('url', this.handleOpenURL)
+    }
 
     handleOpenURL = ({ url }) => {
         // Extract stringified user string out of the URL
         const [, user_string] = url.match(/user=([^#]+)/);
-        this.setState({
-            // Decode the user string and parse it into JSON
-            user: JSON.parse(decodeURI(user_string))
-        });
+        // this.setState({
+        //     // Decode the user string and parse it into JSON
+        //     user: JSON.parse(decodeURI(user_string))
+        // })
+        this.props.login(JSON.parse(decodeURI(user_string)))
         if (Platform.OS === 'ios') {
             SafariView.dismiss();
         }
@@ -55,8 +58,8 @@ class Login extends Component {
     }
 
     render() {
-        // const { user } = this.state;
-        console.log(this.state.user)
+        const { user } = this.props
+        console.log(user)
         return (
             <View style={styles.container}>
                 <Icon.Button
@@ -71,7 +74,22 @@ class Login extends Component {
         )
     }
 }
-export default Login
+
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        login: (user) => {
+            dispatch(login(user))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
 
 const iconStyles = {
     borderRadius: 10,
@@ -112,4 +130,4 @@ const styles = StyleSheet.create({
         margin: 20,
         marginBottom: 30,
     },
-});
+})

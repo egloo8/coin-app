@@ -14,12 +14,6 @@ export const decrementAmount = id => {
     }
 }
 
-export const incr = () => {
-    return {
-        type: 'LABAS'
-    }
-}
-
 export default function fetchCoinData() {
     return dispatch => {
         dispatch({ type: 'FETCHING_COIN_DATA' })
@@ -30,5 +24,12 @@ export default function fetchCoinData() {
             .catch((error) => {
                 dispatch({ type: 'FETCHING_COIN_DATA_FAIL', payload: err.data })
             })
+    }
+}
+
+export function login(user) {
+    return {
+        type: 'LOGIN_USER',
+        user
     }
 }

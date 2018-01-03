@@ -4,7 +4,7 @@ import { StackNavigator, TabNavigator } from 'react-navigation'
 import GridContainer from '../containers/GridContainer'
 import CoinContainer from '../containers/CoinContainer'
 import MainMenu from '../components/MainMenu'
-import Login from '../components/Login'
+import Login from '../containers/Login'
 
 export default Coins = StackNavigator({
     Login: {

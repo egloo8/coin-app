@@ -20,7 +20,7 @@ const initialState = { coins }
 
 let store = compose(
     autoRehydrate(),
-    applyMiddleware(logger, thunk)
+    applyMiddleware(thunk, logger)
 )(createStore)(RootReducer, initialState)
 
 persistStore(store, { storage: AsyncStorage })
