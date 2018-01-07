@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Image, Linking, StyleSheet, Platform, Text, View, Button } from 'react-native'
+import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import SafariView from 'react-native-safari-view'
@@ -20,6 +21,7 @@ class Login extends Component {
                 this.handleOpenURL({ url })
             }
         })
+        console.log(this.props.user)
     }
 
     componentWillUnmount() {
@@ -38,7 +40,12 @@ class Login extends Component {
         if (Platform.OS === 'ios') {
             SafariView.dismiss();
         }
-        this.props.navigation.navigate('Menu')
+        this.props.navigation.dispatch(
+            NavigationActions.reset({
+                index: 0,
+                actions: [NavigationActions.navigate({ routeName: 'Menu' })]
+            })
+        )
     }
 
     loginWithFacebook = () => this.openURL('http://192.168.1.69:8080/auth/facebook')

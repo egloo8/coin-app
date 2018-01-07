@@ -1,16 +1,18 @@
 import React from 'react'
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 import GridContainer from '../containers/GridContainer'
 import CoinContainer from '../containers/CoinContainer'
 import MainMenu from '../components/MainMenu'
 import Login from '../containers/Login'
+import CollectionContainer from '../containers/CollectionContainer'
 
 export default class CoinsNavigator extends React.Component {
     constructor(props) {
         super(props)
-        this._StackNavigator = StackNavigator({
+        this._CoinNavigator = StackNavigator({
             Login: {
                 screen: Login,
                 navigationOptions: ({ navigation }) => ({
@@ -28,6 +30,12 @@ export default class CoinsNavigator extends React.Component {
                 navigationOptions: ({ navigation }) => ({
                     headerTitle: `${navigation.state.params.title}`,
                 })
+            },
+            Coin: {
+                screen: CoinContainer,
+                navigationOptions: ({ navigation }) => ({
+                    headerTitle: `${navigation.state.params.coin.title}`,
+                })
             }
         },
             {
@@ -39,11 +47,41 @@ export default class CoinsNavigator extends React.Component {
                 }
             }
         )
+        this._CollectionNavigator = StackNavigator({
+            Collection: {
+                screen: CollectionContainer,
+                navigationOptions: {
+                    headerTitle: 'Coin App',
+                },
+            }
+        })
+        this._Tabs = TabNavigator({
+            Home: {
+                screen: this._CoinNavigator,
+                navigationOptions: {
+                    tabBarLabel: 'All Coins',
+                    tabBarIcon: ({ tintColor }) => <MaterialIcons name="collections" size={32} color={tintColor} />
+                },
+            },
+            Collection: {
+                screen: this._CollectionNavigator,
+                navigationOptions: {
+                    tabBarLabel: 'Collection',
+                    tabBarIcon: ({ tintColor }) => <MaterialIcons name="collections-bookmark" size={32} color={tintColor} />
+                },
+            },
+        }, {
+                tabBarPosition: 'bottom',
+                animationEnabled: true,
+                tabBarOptions: {
+                    activeTintColor: '#ff9500',
+                },
+            })
+
     }
 
     render() {
-        let StackNavigator = this._StackNavigator;
-        console.log(this.props)
-        return <StackNavigator screenProps={this.props} />;
+        let Tabs = this._Tabs;
+        return <Tabs screenProps={this.props} />
     }
 }

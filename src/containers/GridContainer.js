@@ -9,7 +9,9 @@ import fetchCoinData from '../actions/index'
 class GridContainer extends Component {
 
     componentDidMount() {
+        // if (!this.props.coinsApi.data) {
         this.props.fetchCoinData()
+        // }
     }
 
     onPress = (item, id) => {
@@ -48,7 +50,6 @@ class GridContainer extends Component {
             </ScrollView >
         )
     }
-
 }
 
 const styles = StyleSheet.create({
