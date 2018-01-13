@@ -15,7 +15,7 @@ export const updateAmount = id => {
         }).catch(error => {
             console.log(error)
         })
-        // dispatch({ type: 'UPDATE_AMOUNT', id: id }) maybe i should do something here...
+        dispatch({ type: 'UPDATE_AMOUNT', id: id })
     }
 }
 

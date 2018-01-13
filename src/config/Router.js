@@ -53,8 +53,21 @@ export default class CoinsNavigator extends React.Component {
                 navigationOptions: {
                     headerTitle: 'Coin App',
                 },
+            },
+            Coin: {
+                screen: CoinContainer,
+                navigationOptions: ({ navigation }) => ({
+                    headerTitle: `${navigation.state.params.coin.title}`,
+                })
             }
-        })
+        },
+            {
+                navigationOptions: {
+                    headerTitle: 'Coin App',
+                    headerTintColor: '#ff9500',
+                    headerTitleStyle: { color: 'black' }
+                }
+            })
         this._Tabs = TabNavigator({
             Home: {
                 screen: this._CoinNavigator,

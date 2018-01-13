@@ -4,22 +4,14 @@ import Spinner from 'react-native-loading-spinner-overlay'
 import { Text, View, StyleSheet, Image, ScrollView } from 'react-native'
 import GridCoin from '../components/GridCoin'
 
-import fetchCoinData from '../actions/index'
-
-class Grid extends Component {
-
-    componentDidMount() {
-        // if (!this.props.coinsApi.data) {
-        this.props.fetchCoinData()
-        // }
-    }
+class UserCoinsGrid extends Component {
 
     onPress = (item, id) => {
         this.props.navigation.navigate('Coin', { coin: item, id: id })
     }
 
     render() {
-        const coinsApi = this.props.coinsApi.data
+        let coinsApi = this.props.coinsApi.data
 
         if (!coinsApi) {
             return (
@@ -35,7 +27,7 @@ class Grid extends Component {
             <ScrollView style={styles.scrollContainer} >
                 <View style={styles.container}>
                     {coinsApi.map((coinDatabase, index) => (
-                        this.props.navigation.state.params.type === coinDatabase.type
+                        this.props.coins[index].amount > 0
                             ?
                             <GridCoin
                                 key={index}
@@ -79,4 +71,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default Grid
+export default UserCoinsGrid
