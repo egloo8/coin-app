@@ -34,7 +34,7 @@
 {
   NSURL *jsCodeLocation;
   
-  jsCodeLocation = [NSURL URLWithString: @"http://192.168.1.69:8081/index.bundle?platform=ios&dev=true"];
+  jsCodeLocation = [NSURL URLWithString: @"http://localhost:8081/index.bundle?platform=ios&dev=true"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"CoinApp"

@@ -48,7 +48,7 @@ class Login extends Component {
         )
     }
 
-    loginWithFacebook = () => this.openURL('http://192.168.1.69:8080/auth/facebook')
+    loginWithFacebook = () => this.openURL('http://localhost:8080/auth/facebook')
 
     openURL = (url) => {
         // Use SafariView on iOS

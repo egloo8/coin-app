@@ -1,38 +1,29 @@
 import { apiBaseURL } from '../config/Constants'
 
-export const incrementAmount = id => {
-
-    // return {
-    //     type: 'INCREMENT_AMOUNT',
-    //     id
-    // }
+export const updateAmount = id => {
     return (dispatch, getState) => {
 
-        fetch(`${apiBaseURL}/users/${getState().user._id}/coins/${id}/increment`, {
+        fetch(`${apiBaseURL}/users/${getState().user._id}/coins/${id}/update`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-            }
+            },
+            body: JSON.stringify({
+                amount: getState().coins[id].amount
+            }),
         }).then(() => {
         }).catch(error => {
             console.log(error)
         })
-        dispatch({ type: 'INCREMENT_AMOUNT', id: id })
+        // dispatch({ type: 'UPDATE_AMOUNT', id: id }) maybe i should do something here...
     }
 }
 
-export function addQuote(quote) {
-    return (dispatch) => {
-        AsyncStorage.getItem('data', (err, quotes) => {
-            if (quotes !== null) {
-                quotes = JSON.parse(quotes);
-                quotes.unshift(quote); //add the new quote to the top
-                AsyncStorage.setItem('data', JSON.stringify(quotes), () => {
-                    dispatch({ type: ADD_QUOTE, quote: quote });
-                });
-            }
-        });
-    };
+export const incrementAmount = id => {
+    return {
+        type: 'INCREMENT_AMOUNT',
+        id
+    }
 }
 
 export const decrementAmount = id => {
