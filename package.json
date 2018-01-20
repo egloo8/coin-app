@@ -10,6 +10,8 @@
     "react": "16.0.0",
     "react-native": "0.51.0",
     "react-native-loading-spinner-overlay": "^0.5.2",
+    "react-native-progress": "^3.4.0",
+    "react-native-progress-bar": "^0.1.2",
     "react-native-safari-view": "^2.1.0",
     "react-native-vector-icons": "^4.4.3",
     "react-navigation": "^1.0.0-beta.22",

@@ -2,12 +2,14 @@ import React from 'react'
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import GridContainer from '../containers/GridContainer'
 import CoinContainer from '../containers/CoinContainer'
 import MainMenu from '../components/MainMenu'
 import Login from '../containers/Login'
 import CollectionContainer from '../containers/CollectionContainer'
+import Stats from '../components/Stats'
 
 export default class CoinsNavigator extends React.Component {
     constructor(props) {
@@ -68,6 +70,21 @@ export default class CoinsNavigator extends React.Component {
                     headerTitleStyle: { color: 'black' }
                 }
             })
+        this._StatsNavigator = StackNavigator({
+            Stats: {
+                screen: Stats,
+                navigationOptions: {
+                    headerTitle: 'Your Stats',
+                },
+            }
+        },
+            {
+                navigationOptions: {
+                    headerTitle: 'Coin App',
+                    headerTintColor: '#ff9500',
+                    headerTitleStyle: { color: 'black' }
+                }
+            })
         this._Tabs = TabNavigator({
             Home: {
                 screen: this._CoinNavigator,
@@ -83,6 +100,13 @@ export default class CoinsNavigator extends React.Component {
                     tabBarIcon: ({ tintColor }) => <MaterialIcons name="collections-bookmark" size={32} color={tintColor} />
                 },
             },
+            Stats: {
+                screen: this._StatsNavigator,
+                navigationOptions: {
+                    tabBarLabel: 'Stats',
+                    tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name="trophy-variant" size={32} color={tintColor} />
+                },
+            }
         }, {
                 tabBarPosition: 'bottom',
                 animationEnabled: true,

@@ -8,6 +8,7 @@ import RouterContainer from './src/containers/RouterContainer'
 
 export default class App extends React.Component {
   render() {
+    console.ignoredYellowBox = ['Remote debugger']
     return (
       <Provider store={store}>
         <RouterContainer />
