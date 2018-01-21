@@ -5,7 +5,7 @@ import Spinner from 'react-native-loading-spinner-overlay'
 import { Bar } from 'react-native-progress'
 
 import Divider from './Divider'
-
+import Progress from './Progress'
 
 class Stats extends Component {
 
@@ -41,50 +41,44 @@ class Stats extends Component {
 
         let coins = this.props.coins
 
-        for (let i = 0; i < coinsApi.length; i++) {
-            if (coinsApi[i].type === '50p') {
-                counter50p++
-                if (coins[i].amount > 0) {
-                    owned50p++
-                }
-            } else if (coinsApi[i].type === '£1') {
-                counter1++
-                if (coins[i].amount > 0) {
-                    owned1++
-                }
-            }
-        }
+        // for (let i = 0; i < coinsApi.length; i++) {
+        //     if (coinsApi[i].type === '50p') {
+        //         counter50p++
+        //         if (coins[i].amount > 0) {
+        //             owned50p++
+        //         }
+        //     } else if (coinsApi[i].type === '£1') {
+        //         counter1++
+        //         if (coins[i].amount > 0) {
+        //             owned1++
+        //         }
+        //     }
+        // }
 
         return (
             <ScrollView style={styles.scrollContainer} >
                 <View style={styles.container}>
                     <View style={styles.statsContainer}>
                         <Image source={require('../img/50p.jpeg')} style={styles.image} />
-                        {/* <Bar progress={owned50p / counter50p} style={styles.bar} width={Dimensions.get('window').width * 0.6} color={'#ff9500'} /> */}
-                        <View>
-                            <View style={[styles.flexBox, styles.progressBar]}>
-                                <View style={[styles.progressBar_left, { flex: owned50p / counter50p }]} />
-                                <View style={[styles.progressBar_right, { flex: 100 - owned50p / counter50p }]} />
-                            </View>
-                        </View>
+                        <Progress width={Dimensions.get('window').width * 0.6} color={'#ff9500'} progress={owned50p / counter50p} />
                         <Text style={{ marginLeft: 10 }} >{owned50p}/{counter50p}</Text>
                         <Divider />
                     </View>
                     <View style={styles.statsContainer}>
                         <Image source={require('../img/50pOlympics.jpeg')} style={styles.image} />
-                        {/* <Bar progress={ownedOlympics / counterOlympics} width={Dimensions.get('window').width * 0.6} color={'#ff9500'} /> */}
+                        <Progress width={Dimensions.get('window').width * 0.6} color={'#ff9500'} progress={ownedOlympics / counterOlympics} />
                         <Text style={{ marginLeft: 10 }} >{ownedOlympics}/{counterOlympics}</Text>
                         <Divider />
                     </View>
                     <View style={styles.statsContainer}>
                         <Image source={require('../img/£1.jpeg')} style={styles.image} />
-                        {/* <Bar progress={owned1 / counter1} style={styles.bar} width={Dimensions.get('window').width * 0.6} color={'#ff9500'} /> */}
+                        <Progress width={Dimensions.get('window').width * 0.6} color={'#ff9500'} progress={owned1 / counter1} />
                         <Text style={{ marginLeft: 10 }} >{owned1}/{counter1}</Text>
                         <Divider />
                     </View>
                     <View style={styles.statsContainer}>
                         <Image source={require('../img/£2.jpeg')} style={styles.image} />
-                        {/* <Bar progress={owned2 / counter2} style={styles.bar} width={Dimensions.get('window').width * 0.6} color={'#ff9500'} /> */}
+                        <Progress width={Dimensions.get('window').width * 0.6} color={'#ff9500'} progress={owned2 / counter2} />
                         <Text style={{ marginLeft: 10 }} >{owned2}/{counter2}</Text>
                         <Divider />
                     </View>
@@ -106,14 +100,14 @@ const styles = StyleSheet.create({
     statsContainer: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 40
+        justifyContent: 'space-between',
+        marginBottom: 40,
     },
     image: {
         width: 35,
         height: 35,
-        marginRight: 10
+        marginLeft: 10,
+        marginTop: -10
     },
     bar: {
         width: Dimensions.get('window').width * 0.6

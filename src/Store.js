@@ -6,22 +6,24 @@ import logger from 'redux-logger'
 import { autoRehydrate, persistStore } from 'redux-persist'
 import RootReducer from './reducers'
 
-const size = 5
-let coins = []
+// const size = 20
+// let coins = []
 
-for (let i = 0; i < size; i++) {
-    coins.push({
-        id: i,
-        amount: 0
-    })
-}
+// for (let i = 0; i < size; i++) {
+//     coins.push({
+//         id: i,
+//         amount: 0
+//     })
+// }
 
-const initialState = { coins }
+// const initialState = { coins }
 
 let store = compose(
     autoRehydrate(),
     applyMiddleware(thunk, logger)
-)(createStore)(RootReducer, initialState)
+)(createStore)(RootReducer)
+
+AsyncStorage.clear()
 
 persistStore(store, { storage: AsyncStorage })
 

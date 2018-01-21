@@ -1,15 +1,15 @@
 import { apiBaseURL } from '../config/Constants'
 
-export const updateAmount = id => {
+export const updateAmount = (id, amount) => {
     return (dispatch, getState) => {
 
-        fetch(`${apiBaseURL}/users/${getState().user._id}/coins/${id}/update`, {
+        fetch(`${apiBaseURL}/users/${getState().user}/coins/${id}/update`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                amount: getState().coins[id].amount
+                amount: amount
             }),
         }).then(() => {
         }).catch(error => {
@@ -29,6 +29,13 @@ export const incrementAmount = id => {
 export const decrementAmount = id => {
     return {
         type: 'DECREMENT_AMOUNT',
+        id
+    }
+}
+
+export const createAmount = id => {
+    return {
+        type: 'CREATE_AMOUNT',
         id
     }
 }

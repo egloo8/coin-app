@@ -10,6 +10,7 @@ import MainMenu from '../components/MainMenu'
 import Login from '../containers/Login'
 import CollectionContainer from '../containers/CollectionContainer'
 import Stats from '../components/Stats'
+import UserContainer from '../containers/UserContainer'
 
 export default class CoinsNavigator extends React.Component {
     constructor(props) {
@@ -19,6 +20,7 @@ export default class CoinsNavigator extends React.Component {
                 screen: Login,
                 navigationOptions: ({ navigation }) => ({
                     headerTitle: 'Coin App',
+                    tabBarVisible: false
                 })
             },
             Menu: {
@@ -45,7 +47,7 @@ export default class CoinsNavigator extends React.Component {
                 navigationOptions: {
                     headerTitle: 'Coin App',
                     headerTintColor: '#ff9500',
-                    headerTitleStyle: { color: 'black' }
+                    headerTitleStyle: { color: 'black' },
                 }
             }
         )
@@ -67,7 +69,7 @@ export default class CoinsNavigator extends React.Component {
                 navigationOptions: {
                     headerTitle: 'Coin App',
                     headerTintColor: '#ff9500',
-                    headerTitleStyle: { color: 'black' }
+                    headerTitleStyle: { color: 'black' },
                 }
             })
         this._StatsNavigator = StackNavigator({
@@ -81,6 +83,20 @@ export default class CoinsNavigator extends React.Component {
             {
                 navigationOptions: {
                     headerTitle: 'Coin App',
+                    headerTintColor: '#ff9500',
+                    headerTitleStyle: { color: 'black' }
+                }
+            })
+        this._UserNavigator = StackNavigator({
+            User: {
+                screen: UserContainer,
+                navigationOptions: {
+                    headerTitle: 'User Info',
+                },
+            }
+        },
+            {
+                navigationOptions: {
                     headerTintColor: '#ff9500',
                     headerTitleStyle: { color: 'black' }
                 }
@@ -105,6 +121,13 @@ export default class CoinsNavigator extends React.Component {
                 navigationOptions: {
                     tabBarLabel: 'Stats',
                     tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name="trophy-variant" size={32} color={tintColor} />
+                },
+            },
+            User: {
+                screen: this._UserNavigator,
+                navigationOptions: {
+                    tabBarLabel: 'User',
+                    tabBarIcon: ({ tintColor }) => <MaterialIcons name="person" size={32} color={tintColor} />
                 },
             }
         }, {

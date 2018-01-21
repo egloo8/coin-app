@@ -10,7 +10,7 @@ class AllCoinsGrid extends Component {
 
     componentDidMount() {
         // if (!this.props.coinsApi.data) {
-        this.props.fetchCoinData()
+            this.props.fetchCoinData()
         // }
     }
 
@@ -63,20 +63,5 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     }
 })
-
-function mapStateToProps(state) {
-    return {
-        coins: state.coins,
-        coinsApi: state.coinsApi
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        fetchCoinData: () => {
-            dispatch(fetchCoinData())
-        }
-    }
-}
 
 export default AllCoinsGrid

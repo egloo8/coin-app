@@ -6,11 +6,12 @@ import { apiBaseURL } from '../config/Constants'
 class GridCoin extends Component {
 
     calculateOpacity() {
-        if (this.props.coin.amount > 0) {
-            return 1
-        } else {
-            return 0.5
-        }
+        // if (this.props.coin.amount > 0) {
+        //     return 1
+        // } else {
+        //     return 0.5
+        // }
+        return 1
     }
 
     render() {

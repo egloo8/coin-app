@@ -10,9 +10,6 @@ import { login } from '../actions/index'
 class Login extends Component {
 
     componentDidMount() {
-        if (this.props.user) {
-            // do something so it doesn't ask you to log in
-        }
         // Add event listener to handle OAuthLogin:// URLs
         Linking.addEventListener('url', this.handleOpenURL)
         // Launched from an external URL
@@ -36,7 +33,7 @@ class Login extends Component {
         //     // Decode the user string and parse it into JSON
         //     user: JSON.parse(decodeURI(user_string))
         // })
-        this.props.login(JSON.parse(decodeURI(user_string)))
+        this.props.login(JSON.parse(decodeURI(user_string))._id)
         if (Platform.OS === 'ios') {
             SafariView.dismiss();
         }
@@ -48,7 +45,9 @@ class Login extends Component {
         )
     }
 
-    loginWithFacebook = () => this.openURL('http://localhost:8080/auth/facebook')
+    loginWithFacebook = () => this.openURL('http://192.168.1.69:8080/auth/facebook')
+
+    loginWithGoogle = () => this.openURL('http://192.168.1.69:8080/auth/google')
 
     openURL = (url) => {
         // Use SafariView on iOS
@@ -76,6 +75,14 @@ class Login extends Component {
                     {...iconStyles}
                 >
                     Login with Facebook
+          </Icon.Button>
+                <Icon.Button
+                    name="google"
+                    backgroundColor="#DD4B39"
+                    onPress={this.loginWithGoogle}
+                    {...iconStyles}
+                >
+                    Or with Google
           </Icon.Button>
             </View>
         )

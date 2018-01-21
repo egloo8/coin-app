@@ -1,24 +1,35 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { incrementAmount, decrementAmount, updateAmount } from '../actions'
+import { incrementAmount, decrementAmount, updateAmount, createAmount } from '../actions'
 import { Text, View, StyleSheet, Image, ScrollView, Dimensions, Switch, TextInput, TouchableHighlight } from 'react-native'
 
 class CoinContainer extends Component {
     constructor(props) {
         super(props)
-        this.state = { amount: null }
+        this.state = { initialAmount: null }
     }
 
     componentDidMount() {
+        if (!this.getCoinAmountByID(this.props.id)) {
+            this.props.initiateAmount(this.props.id)
+        }
         this.setState({
-            amount: this.props.coins[this.props.id].amount
+            initialAmount: this.getCoinAmountByID(this.props.id)
         })
     }
 
     componentWillUnmount() {
-        if (this.state.amount !== this.props.coins[this.props.id].amount) {
-            this.props.updateAmount(this.props.id)
+        // console.log(this.props.id, this.getCoinAmountByID(this.props.id))
+        if (this.state.initialAmount !== this.getCoinAmountByID(this.props.id)) {
+            this.props.updateAmount(this.props.id, this.getCoinAmountByID(this.props.id))
+        }
+    }
 
+    getCoinAmountByID(id) {
+        for (let coin in this.props.coins) {
+            if (this.props.coins[coin].id === id) {
+                return this.props.coins[coin].amount
+            }
         }
     }
 
@@ -33,10 +44,9 @@ class CoinContainer extends Component {
                 <TextInput
                     style={{ height: 30, width: 30, borderColor: 'gray', borderWidth: 1 }}
                     textAlign={'center'}
-                    value={coins ? coins[id].amount.toString() : '0'}
+                    value={this.getCoinAmountByID(id) ? this.getCoinAmountByID(id).toString() : '0'}
                     editable={false}
                 />
-                {console.log(coins[id])}
                 <TouchableHighlight onPress={() => onPlusPress(id)}>
                     <Text>+</Text>
                 </TouchableHighlight>
@@ -60,8 +70,11 @@ const mapDispatchToProps = dispatch => {
         onPlusPress: id => {
             dispatch(incrementAmount(id))
         },
-        updateAmount: id => {
-            dispatch(updateAmount(id))
+        updateAmount: (id, amount) => {
+            dispatch(updateAmount(id, amount))
+        },
+        initiateAmount: id => {
+            dispatch(createAmount(id))
         }
     }
 }

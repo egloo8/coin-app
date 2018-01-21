@@ -22,11 +22,11 @@ class UserCoinsGrid extends Component {
                 </View>
             )
         }
-
+        console.log(this.props.coins)
         return (
             <ScrollView style={styles.scrollContainer} >
                 <View style={styles.container}>
-                    {coinsApi.map((coinDatabase, index) => (
+                    {/* {coinsApi.map((coinDatabase, index) => (
                         this.props.coins[index].amount > 0
                             ?
                             <GridCoin
@@ -37,7 +37,7 @@ class UserCoinsGrid extends Component {
                                 onPress={this.onPress}
                             />
                             : null
-                    ))}
+                    ))} */}
                 </View>
             </ScrollView >
         )
@@ -55,20 +55,5 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     }
 })
-
-function mapStateToProps(state) {
-    return {
-        coins: state.coins,
-        coinsApi: state.coinsApi
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        fetchCoinData: () => {
-            dispatch(fetchCoinData())
-        }
-    }
-}
 
 export default UserCoinsGrid
