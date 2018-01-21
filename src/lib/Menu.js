@@ -8,7 +8,7 @@ export const menu = [
     {
         id: 1,
         title: '50p Olympics',
-        type: 'Olympics',
+        type: 'olympic',
         src: require('../img/50pOlympics.jpeg')
     },
     {

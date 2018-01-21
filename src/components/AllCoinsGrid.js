@@ -10,7 +10,7 @@ class AllCoinsGrid extends Component {
 
     componentDidMount() {
         // if (!this.props.coinsApi.data) {
-            this.props.fetchCoinData()
+        this.props.fetchCoinData()
         // }
     }
 
@@ -41,7 +41,7 @@ class AllCoinsGrid extends Component {
                                 key={index}
                                 id={index}
                                 coinDatabase={coinDatabase}
-                                coin={this.props.coins[index]}
+                                coins={this.props.coins}
                                 onPress={this.onPress}
                             />
                             : null

@@ -23,7 +23,7 @@ let store = compose(
     applyMiddleware(thunk, logger)
 )(createStore)(RootReducer)
 
-AsyncStorage.clear()
+// AsyncStorage.clear()
 
 persistStore(store, { storage: AsyncStorage })
 

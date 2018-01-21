@@ -22,22 +22,23 @@ class UserCoinsGrid extends Component {
                 </View>
             )
         }
-        console.log(this.props.coins)
+
         return (
             <ScrollView style={styles.scrollContainer} >
                 <View style={styles.container}>
-                    {/* {coinsApi.map((coinDatabase, index) => (
-                        this.props.coins[index].amount > 0
+                    {this.props.coins.map((coin, index) => (
+                        coin.amount > 0
                             ?
                             <GridCoin
                                 key={index}
-                                id={index}
-                                coinDatabase={coinDatabase}
-                                coin={this.props.coins[index]}
+                                id={coin.id}
+                                coinDatabase={coinsApi[coin.id]}
+                                coin={coin}
                                 onPress={this.onPress}
+                                nocheck={true}
                             />
                             : null
-                    ))} */}
+                    ))}
                 </View>
             </ScrollView >
         )

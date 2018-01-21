@@ -10,7 +10,7 @@ class CoinContainer extends Component {
     }
 
     componentDidMount() {
-        if (!this.getCoinAmountByID(this.props.id)) {
+        if (typeof this.getCoinAmountByID(this.props.id) === 'undefined') {
             this.props.initiateAmount(this.props.id)
         }
         this.setState({
@@ -19,7 +19,6 @@ class CoinContainer extends Component {
     }
 
     componentWillUnmount() {
-        // console.log(this.props.id, this.getCoinAmountByID(this.props.id))
         if (this.state.initialAmount !== this.getCoinAmountByID(this.props.id)) {
             this.props.updateAmount(this.props.id, this.getCoinAmountByID(this.props.id))
         }

@@ -59,3 +59,10 @@ export function login(user) {
         user
     }
 }
+
+export function logout() {
+    return {
+        type: 'LOGOUT_USER',
+        user
+    }
+}

@@ -16,6 +16,14 @@ class Stats extends Component {
         let counter2 = 0
     }
 
+    getCoinAmountByID(id) {
+        for (let coin in this.props.coins) {
+            if (this.props.coins[coin].id === id) {
+                return this.props.coins[coin].amount
+            }
+        }
+    }
+
     render() {
 
         let coinsApi = this.props.coinsApi.data
@@ -41,19 +49,32 @@ class Stats extends Component {
 
         let coins = this.props.coins
 
-        // for (let i = 0; i < coinsApi.length; i++) {
-        //     if (coinsApi[i].type === '50p') {
-        //         counter50p++
-        //         if (coins[i].amount > 0) {
-        //             owned50p++
-        //         }
-        //     } else if (coinsApi[i].type === '£1') {
-        //         counter1++
-        //         if (coins[i].amount > 0) {
-        //             owned1++
-        //         }
-        //     }
-        // }
+        for (let i = 0; i < coinsApi.length; i++) {
+            if (coinsApi[i].type === '50p') {
+                counter50p++
+                if (this.getCoinAmountByID(i) > 0) {
+                    owned50p++
+                }
+            }
+            else if (coinsApi[i].type === 'olympic') {
+                counterOlympics++
+                if (this.getCoinAmountByID(i) > 0) {
+                    ownedOlympics++
+                }
+            }
+            else if (coinsApi[i].type === '£1') {
+                counter1++
+                if (this.getCoinAmountByID(i) > 0) {
+                    owned1++
+                }
+            }
+            else if (coinsApi[i].type === '£2') {
+                counter2++
+                if (this.getCoinAmountByID(i) > 0) {
+                    owned2++
+                }
+            }
+        }
 
         return (
             <ScrollView style={styles.scrollContainer} >
