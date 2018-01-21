@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { Image, Linking, StyleSheet, Platform, Text, View, Button } from 'react-native'
+import { Image, Linking, StyleSheet, Platform, Text, View, Button, Dimensions } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import SafariView from 'react-native-safari-view'
 
 import { login } from '../actions/index'
+import { apiBaseURL } from '../config/Constants'
 
 class Login extends Component {
 
@@ -35,7 +36,7 @@ class Login extends Component {
         // })
         this.props.login(JSON.parse(decodeURI(user_string))._id)
         if (Platform.OS === 'ios') {
-            SafariView.dismiss();
+            SafariView.dismiss()
         }
         this.props.navigation.dispatch(
             NavigationActions.reset({
@@ -45,9 +46,8 @@ class Login extends Component {
         )
     }
 
-    loginWithFacebook = () => this.openURL('http://192.168.1.69:8080/auth/facebook')
-
-    loginWithGoogle = () => this.openURL('http://192.168.1.69:8080/auth/google')
+    loginWithFacebook = () => this.openURL(`${apiBaseURL}/auth/facebook`)
+    loginWithGoogle = () => this.openURL(`${apiBaseURL}/auth/google`)
 
     openURL = (url) => {
         // Use SafariView on iOS
@@ -55,11 +55,11 @@ class Login extends Component {
             SafariView.show({
                 url: url,
                 fromBottom: true,
-            });
+            })
         }
         // Or Linking.openURL on Android
         else {
-            Linking.openURL(url);
+            Linking.openURL(url)
         }
     }
 
@@ -68,23 +68,37 @@ class Login extends Component {
         console.log(user)
         return (
             <View style={styles.container}>
-                <Icon.Button
-                    name="facebook"
-                    backgroundColor="#3b5998"
-                    onPress={this.loginWithFacebook}
-                    {...iconStyles}
-                >
-                    Login with Facebook
-          </Icon.Button>
-                <Icon.Button
-                    name="google"
-                    backgroundColor="#DD4B39"
-                    onPress={this.loginWithGoogle}
-                    {...iconStyles}
-                >
-                    Or with Google
-          </Icon.Button>
+                <View style={styles.content}>
+                    <Text style={styles.header}>
+                        Welcome to Coin App!
+                    </Text>
+                    <Text style={styles.text}>
+                        Please log in to continue {'\n'}
+                        Login with:
+                    </Text>
+                </View>
+                <View style={styles.buttons}>
+                    <Icon.Button
+                        name="facebook"
+                        backgroundColor="#3b5998"
+                        onPress={this.loginWithFacebook}
+                        {...iconStyles}
+                        width={Dimensions.get('window').width / 2 - 40}
+                    >
+                        Facebook
+                    </Icon.Button>
+                    <Icon.Button
+                        name="google"
+                        backgroundColor="#DD4B39"
+                        onPress={this.loginWithGoogle}
+                        {...iconStyles}
+                        width={Dimensions.get('window').width / 2 - 40}
+                    >
+                        Google+
+                    </Icon.Button>
+                </View>
             </View>
+
         )
     }
 }
@@ -108,7 +122,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Login)
 const iconStyles = {
     borderRadius: 10,
     iconStyle: { paddingVertical: 5 },
-};
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -119,14 +133,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    avatar: {
-        margin: 20,
-    },
-    avatarImage: {
-        borderRadius: 50,
-        height: 100,
-        width: 100,
     },
     header: {
         fontSize: 20,
@@ -139,7 +145,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
     buttons: {
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         flexDirection: 'row',
         margin: 20,
         marginBottom: 30,
