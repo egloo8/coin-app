@@ -3,7 +3,7 @@ import { apiBaseURL } from '../config/Constants'
 export const updateAmount = (id, amount) => {
     return (dispatch, getState) => {
 
-        fetch(`${apiBaseURL}/users/${getState().user}/coins/${id}/update`, {
+        fetch(`${apiBaseURL}/users/${getState().user.user}/coins/${id}/update`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ export function fetchUserData() {
     return (dispatch, getState) => {
         dispatch({ type: 'FETCHING_USER_DATA' })
 
-        return fetch(`${apiBaseURL}/users/${getState().user}/amounts`)
+        return fetch(`${apiBaseURL}/users/${getState().user.user}/amounts`)
             .then(res => res.json())
             .then(res => {
                 dispatch({ type: 'FETCHING_USER_DATA_SUCCESS', payload: res })
@@ -79,7 +79,12 @@ export function login(user) {
 
 export function logout() {
     return {
-        type: 'LOGOUT_USER',
-        user
+        type: 'LOGOUT_USER'
+    }
+}
+
+export function rehydrationComplete() {
+    return {
+        type: 'REHYDRATION_COMPLETE'
     }
 }

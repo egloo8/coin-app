@@ -6,6 +6,8 @@ import logger from 'redux-logger'
 import { autoRehydrate, persistStore } from 'redux-persist'
 import RootReducer from './reducers'
 
+import { rehydrationComplete } from './actions/index'
+
 let store = compose(
     autoRehydrate(),
     applyMiddleware(thunk, logger)
@@ -13,6 +15,8 @@ let store = compose(
 
 // AsyncStorage.clear()
 
-persistStore(store, { storage: AsyncStorage })
+persistStore(store, { storage: AsyncStorage }, () => {
+    store.dispatch(rehydrationComplete())
+})
 
 export default store

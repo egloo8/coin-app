@@ -1,9 +1,22 @@
-export default function (state = [], action) {
+const initialState = {
+    user: null,
+    isLoggedIn: false
+}
+
+export default function (state = initialState, action) {
     switch (action.type) {
         case 'LOGIN_USER':
-            return action.user
+            return {
+                ...state,
+                user: action.user,
+                isLoggedIn: true
+            }
         case 'LOGOUT_USER':
-            return null
+            return {
+                ...state,
+                user: null,
+                isLoggedIn: false
+            }
         default:
             return state
     }

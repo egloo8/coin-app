@@ -19,7 +19,6 @@ class Login extends Component {
                 this.handleOpenURL({ url })
             }
         })
-        console.log(this.props.user)
     }
 
     componentWillUnmount() {
@@ -64,8 +63,6 @@ class Login extends Component {
     }
 
     render() {
-        const { user } = this.props
-        console.log(user)
         return (
             <View style={styles.container}>
                 <View style={styles.content}>
