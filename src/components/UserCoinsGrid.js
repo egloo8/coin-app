@@ -16,9 +16,9 @@ class UserCoinsGrid extends Component {
         if (!coinsApi) {
             return (
                 <View>
-                    <Spinner
+                    {/* <Spinner
                         visible={this.props.coinsApi.isFetching}
-                    />
+                    /> */}
                 </View>
             )
         }
@@ -32,7 +32,7 @@ class UserCoinsGrid extends Component {
                             <GridCoin
                                 key={index}
                                 id={coin.id}
-                                coinDatabase={coinsApi[coin.id]}
+                                coinDatabase={coinsApi[coin.coinID]}
                                 coin={coin}
                                 onPress={this.onPress}
                                 nocheck={true}

@@ -43,7 +43,7 @@ export default class CoinsNavigator extends React.Component {
             }
         },
             {
-                initialRouteName: this.props.initialRouteName,
+                initialRouteName: this.props.initialRouteName, 
                 navigationOptions: {
                     headerTitle: 'Coin App',
                     headerTintColor: '#ff9500',

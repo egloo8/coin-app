@@ -4,13 +4,11 @@ import Spinner from 'react-native-loading-spinner-overlay'
 import { Text, View, StyleSheet, Image, ScrollView } from 'react-native'
 import GridCoin from '../components/GridCoin'
 
-import fetchCoinData from '../actions/index'
-
 class AllCoinsGrid extends Component {
 
     componentDidMount() {
         // if (!this.props.coinsApi.data) {
-        this.props.fetchCoinData()
+        // this.props.fetchCoinData()
         // }
     }
 
@@ -24,9 +22,9 @@ class AllCoinsGrid extends Component {
         if (!coinsApi) {
             return (
                 <View>
-                    <Spinner
+                    {/* <Spinner
                         visible={this.props.coinsApi.isFetching}
-                    />
+                    /> */}
                 </View>
             )
         }

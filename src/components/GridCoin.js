@@ -16,7 +16,7 @@ class GridCoin extends Component {
 
     getCoinAmountByID(id) {
         for (let coin in this.props.coins) {
-            if (this.props.coins[coin].id === id) {
+            if (this.props.coins[coin].coinID === id) {
                 return this.props.coins[coin].amount
             }
         }
@@ -24,7 +24,6 @@ class GridCoin extends Component {
 
     render() {
         const coinDatabase = this.props.coinDatabase
-
         return (
             <View
                 style={styles.box}

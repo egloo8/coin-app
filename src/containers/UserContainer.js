@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { incrementAmount, decrementAmount, updateAmount } from '../actions'
 import { Text, View, StyleSheet, Image, ScrollView, Dimensions, Switch, TextInput, TouchableHighlight } from 'react-native'
 
-import fetchCoinData from '../actions/index'
+import { fetchCoinData } from '../actions/index'
+
 
 class UserContainer extends Component {
     constructor(props) {

@@ -53,10 +53,27 @@ export default function fetchCoinData() {
     }
 }
 
+export function fetchUserData() {
+    return (dispatch, getState) => {
+        dispatch({ type: 'FETCHING_USER_DATA' })
+
+        return fetch(`${apiBaseURL}/users/${getState().user}/amounts`)
+            .then(res => res.json())
+            .then(res => {
+                dispatch({ type: 'FETCHING_USER_DATA_SUCCESS', payload: res })
+                dispatch({ type: 'RETRIEVE_AMOUNTS_FROM_DATABASE', payload: res })
+                console.log(res)
+            })
+            .catch((error) => {
+                dispatch({ type: 'FETCHING_USER_DATA_FAIL', payload: 'error' })
+            })
+    }
+}
+
 export function login(user) {
-    return {
-        type: 'LOGIN_USER',
-        user
+    return (dispatch) => {
+        dispatch({ type: 'LOGIN_USER', user })
+        fetchUserData()
     }
 }
 
