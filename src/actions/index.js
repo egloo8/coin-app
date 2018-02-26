@@ -1,4 +1,5 @@
 import { apiBaseURL } from '../config/Constants'
+// import {Facebook} from 'fb'
 
 export const updateAmount = (id, amount) => {
     return (dispatch, getState) => {
@@ -70,17 +71,33 @@ export function fetchUserData() {
     }
 }
 
-export function login(user) {
+export function login(user, token) {
     return (dispatch) => {
-        dispatch({ type: 'LOGIN_USER', user })
+        dispatch({ type: 'LOGIN_USER', user, token })
         fetchUserData()
     }
 }
 
 export function logout() {
-    return {
-        type: 'LOGOUT_USER'
+
+    return (dispatch, getState) => {
+        fetch(`${apiBaseURL}/auth/logout`)
+            .catch((error) => {
+                console.log(error)
+            })
+
+        dispatch({ type: 'LOGOUT_USER' })
+
+        FB.api(
+            "/{user-id}/permissions",
+            function (response) {
+                if (response && !response.error) {
+                    /* handle the result */
+                }
+            }
+        )
     }
+
 }
 
 export function rehydrationComplete() {

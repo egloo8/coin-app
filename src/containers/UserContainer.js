@@ -1,38 +1,44 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 import { incrementAmount, decrementAmount, updateAmount } from '../actions'
 import { Text, View, StyleSheet, Image, ScrollView, Dimensions, Switch, TextInput, TouchableHighlight } from 'react-native'
 
-import { fetchCoinData } from '../actions/index'
+import { logout } from '../actions/index'
 
 
 class UserContainer extends Component {
-    constructor(props) {
-        super(props)
-        this.state = { amount: null }
+
+    onLogout() {
+        this.props.logout()
+
+        this.props.navigation.navigate('Home')
+        this.props.navigation.dispatch(
+            NavigationActions.reset({
+                index: 0,
+                actions: [NavigationActions.navigate({ routeName: 'Login' })]
+            })
+        )
+
     }
 
     render() {
         return (
             <View>
-                <Text>Logout</Text>
+                <TouchableHighlight onPress={() => this.onLogout()}>
+                    <Text>Logout</Text>
+                </TouchableHighlight>
             </View>
         )
     }
 }
 
-const mapStateToProps = (state, props) => {
-    return {
-        coins: state.coins
-    }
-}
-
 const mapDispatchToProps = dispatch => {
     return {
-        fetchCoinData: () => {
-            dispatch(fetchCoinData())
+        logout: () => {
+            dispatch(logout())
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserContainer)
+export default connect(null, mapDispatchToProps)(UserContainer)

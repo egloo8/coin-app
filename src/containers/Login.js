@@ -33,7 +33,7 @@ class Login extends Component {
         //     // Decode the user string and parse it into JSON
         //     user: JSON.parse(decodeURI(user_string))
         // })
-        this.props.login(JSON.parse(decodeURI(user_string))._id)
+        this.props.login(JSON.parse(decodeURI(user_string))._id, JSON.parse(decodeURI(user_string)).token)
         if (Platform.OS === 'ios') {
             SafariView.dismiss()
         }

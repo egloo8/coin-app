@@ -7,6 +7,7 @@ import GridCoin from '../components/GridCoin'
 class UserCoinsGrid extends Component {
 
     onPress = (item, id) => {
+        console.log(item, id)
         this.props.navigation.navigate('Coin', { coin: item, id: id })
     }
 
@@ -31,7 +32,7 @@ class UserCoinsGrid extends Component {
                             ?
                             <GridCoin
                                 key={index}
-                                id={coin.id}
+                                id={coin.coinID}
                                 coinDatabase={coinsApi[coin.coinID]}
                                 coin={coin}
                                 onPress={this.onPress}
