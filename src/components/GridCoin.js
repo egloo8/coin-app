@@ -40,10 +40,11 @@ export default GridCoin
 
 const styles = StyleSheet.create({
     box: {
-        margin: 4,
-        width: Dimensions.get('window').width / 3 - 12,
-        height: Dimensions.get('window').width / 3 - 12,
-        justifyContent: 'center'
+        width: Dimensions.get('window').width * 0.30666,
+        height: Dimensions.get('window').width * 0.30666,
+        justifyContent: 'center',
+        marginRight: '2%',
+        marginBottom: '2%'
     },
     text: {
         color: '#4f603c',

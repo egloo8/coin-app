@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import Spinner from 'react-native-loading-spinner-overlay'
 import { Text, View, StyleSheet, Image, ScrollView } from 'react-native'
 import GridCoin from '../components/GridCoin'
@@ -55,6 +54,9 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
+        paddingTop: '2%',
+        paddingLeft: '2%',
+        paddingBottom: '2%'
     },
     scrollContainer: {
         flex: 1,
