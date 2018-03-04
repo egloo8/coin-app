@@ -1,62 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { incrementAmount, decrementAmount, updateAmount, createAmount } from '../actions'
-import { Text, View, StyleSheet, Image, ScrollView, Dimensions, Switch, TextInput, TouchableHighlight } from 'react-native'
-
-class CoinContainer extends Component {
-    constructor(props) {
-        super(props)
-        this.state = { initialAmount: null }
-    }
-
-    componentDidMount() {
-        if (typeof this.getCoinAmountByID(this.props.id) === 'undefined') {
-            this.props.initiateAmount(this.props.id)
-        }
-        this.setState({
-            initialAmount: this.getCoinAmountByID(this.props.id)
-        })
-    }
-
-    componentWillUnmount() {
-        if (this.state.initialAmount !== this.getCoinAmountByID(this.props.id)) {
-            this.props.updateAmount(this.props.id, this.getCoinAmountByID(this.props.id))
-        }
-    }
-
-    getCoinAmountByID(id) {
-        for (let coin in this.props.coins) {
-            if (this.props.coins[coin].coinID === id) {
-                return this.props.coins[coin].amount
-            }
-        }
-    }
-
-    render() {
-        coins = this.props.coins
-        var { coins, id, onMinusPress, onPlusPress } = this.props
-        return (
-            <View>
-                <TouchableHighlight onPress={() => onMinusPress(id)} >
-                    <Text>-</Text>
-                </TouchableHighlight>
-                <TextInput
-                    style={{ height: 30, width: 30, borderColor: 'gray', borderWidth: 1 }}
-                    textAlign={'center'}
-                    value={this.getCoinAmountByID(id) ? this.getCoinAmountByID(id).toString() : '0'}
-                    editable={false}
-                />
-                <TouchableHighlight onPress={() => onPlusPress(id)}>
-                    <Text>+</Text>
-                </TouchableHighlight>
-            </View>
-        )
-    }
-}
+import CoinDetails from '../components/CoinDetails'
 
 const mapStateToProps = (state, props) => {
     return {
         coins: state.coins,
+        coinsApi: state.coinsApi,
         id: props.navigation.state.params.id,
     }
 }
@@ -78,4 +28,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CoinContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(CoinDetails)

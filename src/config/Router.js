@@ -26,7 +26,7 @@ export default class CoinsNavigator extends React.Component {
             Menu: {
                 screen: MainMenu,
                 navigationOptions: ({ navigation }) => ({
-                    headerTitle: 'Coin App',
+                    headerTitle: 'All Coins',
                 })
             },
             Grid: {
@@ -55,7 +55,7 @@ export default class CoinsNavigator extends React.Component {
             Collection: {
                 screen: CollectionContainer,
                 navigationOptions: {
-                    headerTitle: 'Coin App',
+                    headerTitle: 'Collection',
                 },
             },
             Coin: {
@@ -76,7 +76,7 @@ export default class CoinsNavigator extends React.Component {
             Stats: {
                 screen: Stats,
                 navigationOptions: {
-                    headerTitle: 'Your Stats',
+                    headerTitle: 'Stats',
                 },
             }
         },

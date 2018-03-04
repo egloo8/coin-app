@@ -43,6 +43,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'white',
+        minHeight: 101,
+        paddingLeft: 10
     },
     rightContainer: {
         flex: 1,
