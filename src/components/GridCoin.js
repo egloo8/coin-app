@@ -29,7 +29,7 @@ class GridCoin extends Component {
                 style={styles.box}
                 key={coinDatabase._id}
             >
-                <TouchableWithoutFeedback onPress={() => this.props.onPress(coinDatabase, this.props.id)}>
+                <TouchableWithoutFeedback onLongPress={() => this.props.onLongPress(this.props.id, this.getCoinAmountByID(this.props.id))} onPress={() => this.props.onPress(coinDatabase, this.props.id)}>
                     <Image source={{ uri: apiBaseURL + coinDatabase.imagePath }} style={{ width: '100%', height: '100%', opacity: this.props.nocheck ? 1 : this.calculateOpacity() }} />
                 </TouchableWithoutFeedback>
             </View>

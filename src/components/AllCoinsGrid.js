@@ -15,6 +15,14 @@ class AllCoinsGrid extends Component {
         this.props.navigation.navigate('Coin', { coin: item, id: id })
     }
 
+    onLongPress = (id, amount) => {
+        if (amount > 0)
+            this.props.changeAmount(id, 0)
+        else
+            this.props.changeAmount(id, 1)
+
+    }
+
     render() {
         const coinsApi = this.props.coinsApi.data
 
@@ -40,6 +48,7 @@ class AllCoinsGrid extends Component {
                                 coinDatabase={coinDatabase}
                                 coins={this.props.coins}
                                 onPress={this.onPress}
+                                onLongPress={this.onLongPress}
                             />
                             : null
                     ))}

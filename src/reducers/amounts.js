@@ -20,6 +20,12 @@ export default function (state = [], action) {
                     ? { ...coin, amount: coin.amount - 1 }
                     : coin
             )
+        case 'CHANGE_AMOUNT':
+            return state.map(coin =>
+                (coin.coinID === action.id)
+                    ? { ...coin, amount: action.amount }
+                    : coin
+            )
         case 'RETRIEVE_AMOUNTS_FROM_DATABASE':
             let newState = action.payload
             return newState

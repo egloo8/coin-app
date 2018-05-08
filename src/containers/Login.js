@@ -33,7 +33,9 @@ class Login extends Component {
         //     // Decode the user string and parse it into JSON
         //     user: JSON.parse(decodeURI(user_string))
         // })
-        this.props.login(JSON.parse(decodeURI(user_string))._id, JSON.parse(decodeURI(user_string)).token)
+        console.log(JSON.parse(decodeURI(user_string)).name)
+        //JSON.parse(decodeURI(user_string)).token,
+        this.props.login(JSON.parse(decodeURI(user_string))._id, JSON.parse(decodeURI(user_string)).name)
         if (Platform.OS === 'ios') {
             SafariView.dismiss()
         }
@@ -118,8 +120,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        login: (user) => {
-            dispatch(login(user))
+        login: (user, name) => {
+            dispatch(login(user, name))
         }
     }
 }

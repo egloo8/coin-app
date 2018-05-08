@@ -19,6 +19,14 @@ export const updateAmount = (id, amount) => {
     }
 }
 
+export const changeAmount = (id, amount) => {
+    return {
+        type: 'CHANGE_AMOUNT',
+        id,
+        amount
+    }
+}
+
 export const incrementAmount = id => {
     return {
         type: 'INCREMENT_AMOUNT',
@@ -70,9 +78,9 @@ export function fetchUserData() {
     }
 }
 
-export function login(user, token) {
+export function login(user, name) {
     return (dispatch) => {
-        dispatch({ type: 'LOGIN_USER', user, token })
+        dispatch({ type: 'LOGIN_USER', user, name })
         fetchUserData()
     }
 }
