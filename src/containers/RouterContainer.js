@@ -8,6 +8,7 @@ class RouterContainer extends React.Component {
     render() {
         if (this.props.rehydration.complete) {
             return <CoinsNavigator initialRouteName={this.props.user.isLoggedIn ? 'Menu' : 'Login'} />
+            // return <CoinsNavigator initialRouteName={'Menu'} />            
         }
 
         return null

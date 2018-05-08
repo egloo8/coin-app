@@ -3,6 +3,7 @@ import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { Button } from 'react-native'
 
 import GridContainer from '../containers/GridContainer'
 import CoinContainer from '../containers/CoinContainer'
@@ -32,7 +33,8 @@ export default class CoinsNavigator extends React.Component {
             Grid: {
                 screen: GridContainer,
                 navigationOptions: ({ navigation }) => ({
-                    headerTitle: `${navigation.state.params.title}`,
+                    title: `${navigation.state.params.title}`, //or list
+                    // headerRight: <MaterialIcons name="view-module" onPress={() => {console.log('labas')}} size={32} color={'#ff9500'} />
                 })
             },
             Coin: {
@@ -43,7 +45,7 @@ export default class CoinsNavigator extends React.Component {
             }
         },
             {
-                initialRouteName: this.props.initialRouteName, 
+                initialRouteName: this.props.initialRouteName,
                 navigationOptions: {
                     headerTitle: 'Coin App',
                     headerTintColor: '#ff9500',

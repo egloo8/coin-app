@@ -49,6 +49,16 @@ class Login extends Component {
     loginWithGoogle = () => this.openURL(`${apiBaseURL}/auth/google`)
 
     openURL = (url) => {
+        // // doing this because fb doesnt work
+        // this.props.login('5a664b3c684d1012e39113c5', 'EAAJ20fXMw50BAFIG3vuKgBuQ8z2nlOMwcIIRFpY4KvdrmxuqHZBGLjgy5qWiuQGpODPt78dZBDUFseEQaIdsEKnn2xMJBJr0TVwa0BT3xh9zBbxb5NZCuTyXW5LZBr9z0ziD6uoK4G16KxXWUjT3CUDCP9QItfjYCyq7or5SCwZDZD')
+        // this.props.navigation.dispatch(
+        //     NavigationActions.reset({
+        //         index: 0,
+        //         actions: [NavigationActions.navigate({ routeName: 'Menu' })]
+        //     })
+        // )
+        
+        
         // Use SafariView on iOS
         if (Platform.OS === 'ios') {
             SafariView.show({
